@@ -70,6 +70,7 @@ haus_5 = {
 
 häuser = [haus_1, haus_2, haus_3, haus_4, haus_5]
 
+lösung = "to be found..."
 
 """
 
@@ -78,6 +79,15 @@ def check_Häuser(aktuelle_häuser):
     print("testing seiteneffekte because yaaaay seiteneffekte")
     for haus in aktuelle_häuser:
         print(haus)
+        zähler = 0
+        for x in haus.values():
+            if x == "":
+                zähler += 1
+        if zähler > 0:
+            lösung = "I'm tired of this grandpa WELL THAT'S TOO DAMN BAD >:("
+        else:
+            lösung = "finally finished"
+            
         
 
 def regel_5(aktuelle_häuser):
@@ -122,7 +132,12 @@ def regel_11(akthä):
 
 def regel_12(akthä):
 # 12) Der Norweger wohnt neben dem blauen Haus
-    print("monke!!!")
+    for haus in akthä:
+        if haus["nationalität"] == "Norweger":
+            hausstelle = akthä.index(haus)
+            # dadurch dass wir aus regel 11 wissen dass der Norweger im ersten Haus wohnt, müssen wir kein davorstehendes Haus checken. da steht keins.
+            # also speichern wir gleich im rechten Haus weil was anderes ist mir grad zu kompliziert deal with it
+            akthä[hausstelle+1]["farbe"] = "Blau"
 
 def regel_13(akthä):
 # 13) Der Besitzer des gelben Hauses raucht Dunhill
@@ -144,7 +159,8 @@ def regel_16(akthä):
 # 16) Das grüne Haus steht unmittelbar links vom weißen Haus
     for haus in akthä:
         if haus["farbe"] == "Weiß":
-            print(haus)
+            hausstelle = akthä.index(haus)
+            akthä[hausstelle-1]["farbe"] = "Grün"
 
 def regel_17(akthä):
 # 17) Der Marlboro-Raucher wohnt neben dem, der eine Katze hält
@@ -160,6 +176,19 @@ def regel_19(akthä):
 
 
 check_Häuser(häuser)
+regel_5(häuser)
+regel_6(häuser)
+regel_7(häuser)
+regel_8(häuser)
+regel_9(häuser)
+regel_10(häuser)
+regel_11(häuser)
+regel_12(häuser)
+regel_13(häuser)
+regel_14(häuser)
 regel_15(häuser)
 regel_16(häuser)
+regel_17(häuser)
+regel_18(häuser)
+regel_19(häuser)
 check_Häuser(häuser)
