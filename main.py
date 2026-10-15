@@ -1,0 +1,89 @@
+"""
+Ein Rätsel, das (nur der Legende nach) von Albert Einstein ist (Klasse von Rätseln)
+1) Es gibt fünf Häuser mit je einer anderen Farbe
+2) In jedem Haus wohnt eine Person einer anderen Nationalität
+3) Jeder Hausbewohner bevorzugt ein bestimmtes Getränk, raucht eine bestimmte
+Zigarettenmarke und hält ein bestimmtes Haustier
+4) Keine der 5 Personen bevorzugt das gleiche Getränk, raucht die gleiche
+Zigarettenmarke oder hält das gleiche Tier wie irgend eine der anderen Personen
+"""
+
+# Datenstrukturen für Häuser
+
+haus_1 = {
+    "farbe": "",
+    "nationalität": "",
+    "getränk": "",
+    "nikotinabusus": "",
+    "haustier": ""
+}
+
+haus_2 = {
+    "farbe": "",
+    "nationalität": "",
+    "getränk": "",
+    "nikotinabusus": "",
+    "haustier": ""
+}
+
+haus_3 = {
+    "farbe": "",
+    "nationalität": "",
+    "getränk": "",
+    "nikotinabusus": "",
+    "haustier": ""
+}
+
+haus_4 = {
+    "farbe": "",
+    "nationalität": "",
+    "getränk": "",
+    "nikotinabusus": "",
+    "haustier": ""
+}
+
+haus_5 = {
+    "farbe": "",
+    "nationalität": "",
+    "getränk": "",
+    "nikotinabusus": "",
+    "haustier": ""
+}
+
+häuser = [haus_1, haus_2, haus_3, haus_4, haus_5]
+
+
+"""
+5) Der Brite lebt im roten Haus
+6) Der Schwede hält einen Hund
+7) Der Däne trinkt gerne Tee
+8) Der Deutsche raucht Rothmanns
+9) Der Besitzer des grünen Hauses trinkt Kaffee
+10) Der Winfield-Raucher trinkt gerne Bier
+11) Der Norweger wohnt im ersten Haus
+12) Der Norweger wohnt neben dem blauen Haus
+13) Der Besitzer des gelben Hauses raucht Dunhill
+14) Die Person, die Pall Mall raucht, hält einen Vogel
+15) Der Mann, der im mittleren Haus wohnt, trinkt Milch
+16) Das grüne Haus steht unmittelbar links vom weißen Haus
+17) Der Marlboro-Raucher wohnt neben dem, der eine Katze hält
+18) Der Marlboro-Raucher hat einen Nachbarn, der Wasser trinkt
+19) Der Mann, der ein Pferd hält, wohnt neben dem, der Dunhill raucht
+
+
+Frage: wer hält einen Fisch als Haustier?
+"""
+def check_Häuser(aktuelle_häuser):
+    for haus in aktuelle_häuser:
+        print(haus)
+
+
+def testing_seiteneffekte_because_yaaaay_seiteneffekte():
+    print("monke")
+    häuser[0]["farbe"] = "lila blass blau"
+
+def regel_5(aktuelle_häuser):
+    # 5) Der Brite lebt im roten Haus
+    for haus in aktuelle_häuser:
+        if haus["farbe"] == "Rot":
+            haus["nationalität"] = "Brite"
