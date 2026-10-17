@@ -28,8 +28,8 @@ Frage: wer hält einen Fisch als Haustier?
 
 # Dictionary mit sets mit möglichen Values zum Vergleichen
 Alles = {
-    "farben": {"Rot", "Grün", "Blau", "Gelb", "Weiß"},
-    "nationalitäten": {"Deutscher", "Brite", "Däne", "Schwede", "Norweger"}
+    "farbe": {"Rot", "Grün", "Blau", "Gelb", "Weiß"},
+    "nationalität": {"Deutscher", "Brite", "Däne", "Schwede", "Norweger"}
 }
 
 
@@ -155,6 +155,8 @@ def regel_8(akthä):
     for haus in akthä:
         if haus["nationalität"] == "Deutscher":
             haus["nikotinabusus"] = "Rothmanns"
+        if haus["nikotinabusus"] == "Rothmanns":
+            haus["nationalität"] = "Deutscher"
 
 def regel_9(akthä):
 # 9) Der Besitzer des grünen Hauses trinkt Kaffee
@@ -223,47 +225,69 @@ def regel_17(akthä):
             hausstelle = akthä.index(haus)
             linkes_haus = akthä[hausstelle-1]
             rechtes_haus= akthä[hausstelle+1]
-            if (check_verbotene_values(linkes_haus, "haustiere", "Katze") == False) and (linkes_haus["haustier"] == ""):
+            if (check_verbotene_values(linkes_haus, "haustier", "Katze") == False) and (linkes_haus["haustier"] == ""):
                 linkes_haus["haustier"] = "Katze"
             elif (check_verbotene_values(rechtes_haus, "haustier", "Katze") == False) and (rechtes_haus["haustier"] == ""):
                 rechtes_haus["haustier"] = "Katze"
+        
 
 
 def regel_18(akthä):
 # 18) Der Marlboro-Raucher hat einen Nachbarn, der Wasser trinkt
-    print("doom")
+    for haus in akthä:
+        if haus["nikotinabusus"] == "Marlboro":
+            hausstelle = akthä.index(haus)
+            linkes_haus = akthä[hausstelle-1]
+            rechtes_haus= akthä[hausstelle+1]
+            if (check_verbotene_values(linkes_haus, "getränk", "Wasser") == False) and (linkes_haus["getränk"] == ""):
+                linkes_haus["haustier"] = "Wasser"
+            elif (check_verbotene_values(rechtes_haus, "getränk", "Wasser") == False) and (rechtes_haus["getränk"] == ""):
+                rechtes_haus["haustier"] = "Wasser"
 
 def regel_19(akthä):
 # 19) Der Mann, der ein Pferd hält, wohnt neben dem, der Dunhill raucht
-    print("AAAAAAAAAHHHHHHHHHH")
+    for haus in akthä:
+        if haus["nikotinabusus"] == "Dunhill":
+            hausstelle = akthä.index(haus)
+            linkes_haus = akthä[hausstelle-1]
+            rechtes_haus= akthä[hausstelle+1]
+            if (check_verbotene_values(linkes_haus, "haustier", "Pferd") == False) and (linkes_haus["haustier"] == ""):
+                linkes_haus["haustier"] = "Pferd"
+            elif (check_verbotene_values(rechtes_haus, "haustier", "Pferd") == False) and (rechtes_haus["haustier"] == ""):
+                rechtes_haus["haustier"] = "Pferd"
 
 def check_verbotene_values(haus, attribut, value):
     return value in haus["verbotene_values"][attribut]
 
 check_Häuser(häuser)
-regel_5(häuser)
-regel_6(häuser)
-regel_7(häuser)
-regel_8(häuser)
-regel_9(häuser)
-regel_10(häuser)
-regel_11(häuser)
-regel_12(häuser)
-regel_13(häuser)
-regel_14(häuser)
-regel_15(häuser)
-regel_16(häuser)
-regel_17(häuser)
-regel_18(häuser)
-regel_19(häuser)
-check_Häuser(häuser)
-print(check_verbotene_values(haus_3, "farbe", "Grün"))
+count = 0
+while count < 50:
+    regel_5(häuser)
+    regel_6(häuser)
+    regel_7(häuser)
+    regel_8(häuser)
+    regel_9(häuser)
+    regel_10(häuser)
+    regel_11(häuser)
+    regel_12(häuser)
+    regel_13(häuser)
+    regel_14(häuser)
+    regel_15(häuser)
+    regel_16(häuser)
+    regel_17(häuser)
+    regel_18(häuser)
+    regel_19(häuser)
+ #   check_Häuser(häuser)
 
-for haus in häuser:
-    verbotene_values = haus["verbotene_values"]
-    for key, set in verbotene_values.items():
-        if len(set) == 4:
-            value = Alles[key].difference(set)
-            for x in value:
-                haus[key] = x # muss ich so machen weil set item nicht abrufbar ist, aber es ist ja nur eins da
-            print(haus)
+    for haus in häuser:
+        verbotene_values = haus["verbotene_values"]
+        for key, set in verbotene_values.items():
+            if len(set) == 4: # basically heißt dass das nur noch ein möglicher Wert hier geht
+                value = Alles[key].difference(set)
+                for x in value:
+                    haus[key] = x # muss ich so machen weil set item nicht abrufbar ist, aber es ist ja nur eins da
+            #    print(haus)
+    count += 1
+    print(count)
+print("Drumroll.......")
+check_Häuser(häuser)
