@@ -33,7 +33,8 @@ haus_1 = {
     "nationalität": "",
     "getränk": "",
     "nikotinabusus": "",
-    "haustier": ""
+    "haustier": "",
+    "verbotene_values": []
 }
 
 haus_2 = {
@@ -41,7 +42,8 @@ haus_2 = {
     "nationalität": "",
     "getränk": "",
     "nikotinabusus": "",
-    "haustier": ""
+    "haustier": "",
+    "verbotene_values": []
 }
 
 haus_3 = {
@@ -49,7 +51,8 @@ haus_3 = {
     "nationalität": "",
     "getränk": "",
     "nikotinabusus": "",
-    "haustier": ""
+    "haustier": "",
+    "verbotene_values": []
 }
 
 haus_4 = {
@@ -57,7 +60,8 @@ haus_4 = {
     "nationalität": "",
     "getränk": "",
     "nikotinabusus": "",
-    "haustier": ""
+    "haustier": "",
+    "verbotene_values": []
 }
 
 haus_5 = {
@@ -65,7 +69,8 @@ haus_5 = {
     "nationalität": "",
     "getränk": "",
     "nikotinabusus": "",
-    "haustier": ""
+    "haustier": "",
+    "verbotene_values": []
 }
 
 häuser = [haus_1, haus_2, haus_3, haus_4, haus_5]
@@ -164,7 +169,13 @@ def regel_16(akthä):
 
 def regel_17(akthä):
 # 17) Der Marlboro-Raucher wohnt neben dem, der eine Katze hält
-    print("bau bau")
+    akthä[2]["nikotinabusus"] = "Marlboro" ### FÜR TESTING ZWECKE
+    for haus in akthä:
+        if haus["nikotinabusus"] == "Marlboro":
+            hausstelle = akthä.index(haus)
+            linkes_haus = akthä[hausstelle-1]
+            rechtes_haus= akthä[hausstelle+1]
+            
 
 def regel_18(akthä):
 # 18) Der Marlboro-Raucher hat einen Nachbarn, der Wasser trinkt
