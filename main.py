@@ -34,7 +34,13 @@ haus_1 = {
     "getränk": "",
     "nikotinabusus": "",
     "haustier": "",
-    "verbotene_values": {}
+    "verbotene_values": {
+        "farben": set(),
+        "nationalitäten": set(),
+        "getränke": set(),
+        "zigarettenmarken": set(),
+        "haustiere": set()
+    }
 }
 
 haus_2 = {
@@ -43,7 +49,13 @@ haus_2 = {
     "getränk": "",
     "nikotinabusus": "",
     "haustier": "",
-    "verbotene_values": {}
+    "verbotene_values": {
+        "farben": set(),
+        "nationalitäten": set(),
+        "getränke": set(),
+        "zigarettenmarken": set(),
+        "haustiere": set()
+    }
 }
 
 haus_3 = {
@@ -52,7 +64,13 @@ haus_3 = {
     "getränk": "",
     "nikotinabusus": "",
     "haustier": "",
-    "verbotene_values": {}
+    "verbotene_values": {
+        "farben": set(),
+        "nationalitäten": set(),
+        "getränke": set(),
+        "zigarettenmarken": set(),
+        "haustiere": set()
+    }
 }
 
 haus_4 = {
@@ -61,7 +79,13 @@ haus_4 = {
     "getränk": "",
     "nikotinabusus": "",
     "haustier": "",
-    "verbotene_values": {}
+    "verbotene_values": {
+        "farben": set(),
+        "nationalitäten": set(),
+        "getränke": set(),
+        "zigarettenmarken": set(),
+        "haustiere": set()
+    }
 }
 
 haus_5 = {
@@ -70,7 +94,13 @@ haus_5 = {
     "getränk": "",
     "nikotinabusus": "",
     "haustier": "",
-    "verbotene_values": {}
+    "verbotene_values": {
+        "farben": set(),
+        "nationalitäten": set(),
+        "getränke": set(),
+        "zigarettenmarken": set(),
+        "haustiere": set()
+    }
 }
 
 häuser = [haus_1, haus_2, haus_3, haus_4, haus_5]
@@ -134,6 +164,9 @@ def regel_10(akthä):
 def regel_11(akthä):
 # 11) Der Norweger wohnt im ersten Haus
     akthä[0]["nationalität"] = "Norweger"
+    akthä[0]["verbotene_values"].add("Rot") # Regel 5
+    akthä[0]["verbotene_values"].add("Blau") # Regel 12
+    akthä[0]["verbotene_values"].add("Weiß") # Regel 16
 
 def regel_12(akthä):
 # 12) Der Norweger wohnt neben dem blauen Haus
@@ -143,6 +176,7 @@ def regel_12(akthä):
             # dadurch dass wir aus regel 11 wissen dass der Norweger im ersten Haus wohnt, müssen wir kein davorstehendes Haus checken. da steht keins.
             # also speichern wir gleich im rechten Haus weil was anderes ist mir grad zu kompliziert deal with it
             akthä[hausstelle+1]["farbe"] = "Blau"
+            akthä[hausstelle]["verbotene_values"].add("Grün") # Regel 16
 
 def regel_13(akthä):
 # 13) Der Besitzer des gelben Hauses raucht Dunhill
@@ -159,10 +193,13 @@ def regel_14(akthä):
 def regel_15(akthä):
 # 15) Der Mann, der im mittleren Haus wohnt, trinkt Milch
     akthä[2]["getränk"] = "Milch"
-    akthä[2]["verbotene_values"].add("Grün", "Winfield", "Däne") # Aus den Regeln 7, 9, 10
+    akthä[2]["verbotene_values"].add("Däne") # Aus Regel 7
+    akthä[2]["verbotene_values"].add("Grün") # Aus Regel 9
+    akthä[2]["verbotene_values"].add("Winfield") # Aus Regel 10
 
 def regel_16(akthä):
 # 16) Das grüne Haus steht unmittelbar links vom weißen Haus
+    akthä[4]["verbotene_values"].add("Grün") # letztes Haus kann nicht grün sein laut der Regel
     for haus in akthä:
         if haus["farbe"] == "Weiß":
             hausstelle = akthä.index(haus)
@@ -173,7 +210,6 @@ def regel_16(akthä):
 
 def regel_17(akthä):
 # 17) Der Marlboro-Raucher wohnt neben dem, der eine Katze hält
-    akthä[2]["nikotinabusus"] = "Marlboro" ### FÜR TESTING ZWECKE
     for haus in akthä:
         if haus["nikotinabusus"] == "Marlboro":
             hausstelle = akthä.index(haus)
@@ -189,6 +225,8 @@ def regel_19(akthä):
 # 19) Der Mann, der ein Pferd hält, wohnt neben dem, der Dunhill raucht
     print("AAAAAAAAAHHHHHHHHHH")
 
+def check_verbotene_values(haus, value):
+    return value in haus["verbotene_values"]
 
 check_Häuser(häuser)
 regel_5(häuser)
