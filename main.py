@@ -34,7 +34,7 @@ haus_1 = {
     "getränk": "",
     "nikotinabusus": "",
     "haustier": "",
-    "verbotene_values": []
+    "verbotene_values": {}
 }
 
 haus_2 = {
@@ -43,7 +43,7 @@ haus_2 = {
     "getränk": "",
     "nikotinabusus": "",
     "haustier": "",
-    "verbotene_values": []
+    "verbotene_values": {}
 }
 
 haus_3 = {
@@ -52,7 +52,7 @@ haus_3 = {
     "getränk": "",
     "nikotinabusus": "",
     "haustier": "",
-    "verbotene_values": []
+    "verbotene_values": {}
 }
 
 haus_4 = {
@@ -61,7 +61,7 @@ haus_4 = {
     "getränk": "",
     "nikotinabusus": "",
     "haustier": "",
-    "verbotene_values": []
+    "verbotene_values": {}
 }
 
 haus_5 = {
@@ -70,7 +70,7 @@ haus_5 = {
     "getränk": "",
     "nikotinabusus": "",
     "haustier": "",
-    "verbotene_values": []
+    "verbotene_values": {}
 }
 
 häuser = [haus_1, haus_2, haus_3, haus_4, haus_5]
@@ -159,6 +159,7 @@ def regel_14(akthä):
 def regel_15(akthä):
 # 15) Der Mann, der im mittleren Haus wohnt, trinkt Milch
     akthä[2]["getränk"] = "Milch"
+    akthä[2]["verbotene_values"].add("Grün", "Winfield", "Däne") # Aus den Regeln 7, 9, 10
 
 def regel_16(akthä):
 # 16) Das grüne Haus steht unmittelbar links vom weißen Haus
@@ -166,6 +167,9 @@ def regel_16(akthä):
         if haus["farbe"] == "Weiß":
             hausstelle = akthä.index(haus)
             akthä[hausstelle-1]["farbe"] = "Grün"
+        elif haus["farbe"] == "Grün":
+            hausstelle = akthä.index(haus)
+            akthä[hausstelle+1]["farbe"] = "Weiß"
 
 def regel_17(akthä):
 # 17) Der Marlboro-Raucher wohnt neben dem, der eine Katze hält
